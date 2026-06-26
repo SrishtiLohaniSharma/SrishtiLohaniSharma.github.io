@@ -8,7 +8,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     
     <!-- Icons -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.260.0/umd/lucide.min.js"></script>
@@ -25,8 +25,9 @@
                         mono: ['JetBrains Mono', 'monospace'],
                     },
                     colors: {
-                        darkBg: '#0B0D14',
-                        darkCard: '#151822',
+                        darkBg: '#0a0a0a',
+                        darkSurface: '#111111',
+                        darkCard: '#151515',
                         brandGreen: '#4ade80',
                         brandGreenHover: '#22c55e',
                     }
@@ -35,7 +36,7 @@
         }
     </script>
 
-    <!-- Pre-load Theme check to prevent flashing -->
+    <!-- Pre-load Theme check -->
     <script>
         if (localStorage.theme === 'light' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: light)').matches)) {
             document.documentElement.classList.remove('dark')
@@ -45,43 +46,87 @@
     </script>
 
     <style>
-        /* Custom base styles */
         body {
             transition: background-color 0.3s ease, color 0.3s ease;
         }
-        .code-block {
-            tab-size: 4;
+        
+        /* Interactive Nav Button Styles */
+        .nav-btn {
+            transition: all 0.2s ease-in-out;
+        }
+        .nav-btn.active {
+            background-color: rgba(74, 222, 128, 0.1);
+            color: #4ade80;
+        }
+
+        /* Hero Background Grid */
+        .bg-grid {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+        }
+        .dark .bg-grid {
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2a2a2a;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3a3a3a;
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-900 dark:bg-darkBg dark:text-gray-100 font-sans antialiased overflow-x-hidden">
+<body class="bg-gray-50 text-gray-900 dark:bg-darkBg dark:text-gray-200 font-sans antialiased overflow-x-hidden selection:bg-brandGreen/30 selection:text-brandGreen">
 
     <!-- Navbar -->
     <nav class="fixed w-full z-50 top-0 transition-colors duration-300 bg-white/80 dark:bg-darkBg/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
+        <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
                 <!-- Logo -->
-                <div class="flex-shrink-0 flex items-center">
-                    <a href="#" class="font-bold text-xl tracking-tight dark:text-white">Srishti<span class="text-brandGreen">.sys</span></a>
+                <div class="flex-shrink-0 flex items-center font-mono">
+                    <a href="#" class="font-medium text-lg tracking-tight dark:text-gray-300 hover:text-brandGreen dark:hover:text-brandGreen transition-colors">
+                        <span class="text-brandGreen">~/</span>srishti.sh
+                    </a>
                 </div>
 
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#about" class="text-sm font-medium text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors">About</a>
-                    <a href="#skills" class="text-sm font-medium text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors">Skills</a>
-                    <a href="#experience" class="text-sm font-medium text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors">Experience</a>
-                    <a href="#projects" class="text-sm font-medium text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors">Projects & Certs</a>
+                <!-- Desktop Menu (Interactive) -->
+                <div class="hidden lg:flex items-center space-x-1 font-mono text-xs uppercase tracking-widest">
+                    <a href="#about" class="nav-btn px-4 py-2 rounded-md text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200">About</a>
+                    <a href="#skills" class="nav-btn px-4 py-2 rounded-md text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200">Skills</a>
+                    <a href="#experience" class="nav-btn px-4 py-2 rounded-md text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200">Experience</a>
+                    <a href="#projects" class="nav-btn px-4 py-2 rounded-md text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200">Projects</a>
+                    <a href="#certifications" class="nav-btn px-4 py-2 rounded-md text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200">Certifications</a>
+                    <a href="#contact" class="nav-btn px-4 py-2 rounded-md text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200">Contact</a>
                 </div>
 
                 <!-- Actions -->
                 <div class="flex items-center space-x-4">
-                    <!-- Theme Toggle -->
-                    <button id="theme-toggle" class="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none transition-colors" aria-label="Toggle Dark Mode">
+                    <a href="https://github.com/SrishtiLohaniSharma" target="_blank" class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors">
+                        <i data-lucide="github" class="w-5 h-5"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/srishti-lohani-sharma/" target="_blank" class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors">
+                        <i data-lucide="linkedin" class="w-5 h-5"></i>
+                    </a>
+                    
+                    <button id="theme-toggle" class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors" aria-label="Toggle Dark Mode">
                         <i data-lucide="sun" id="theme-toggle-light-icon" class="hidden w-5 h-5"></i>
                         <i data-lucide="moon" id="theme-toggle-dark-icon" class="hidden w-5 h-5"></i>
                     </button>
-                    <a href="mailto:srishtilohanisharma@gmail.com" class="hidden sm:inline-flex items-center justify-center px-5 py-2.5 border border-transparent text-sm font-medium rounded-md text-gray-900 bg-brandGreen hover:bg-brandGreenHover transition-colors">
-                        Contact Me
+                    
+                    <a href="mailto:srishtilohanisharma@gmail.com" class="hidden sm:inline-flex items-center justify-center px-4 py-2 text-xs font-mono font-bold rounded text-gray-900 bg-brandGreen hover:bg-brandGreenHover transition-colors gap-2">
+                        <i data-lucide="mail" class="w-4 h-4"></i> HIRE ME
                     </a>
                 </div>
             </div>
@@ -89,309 +134,658 @@
     </nav>
 
     <!-- Main Content -->
-    <main class="pt-24 pb-16 lg:pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-32">
-
+    <main class="w-full relative">
+        
         <!-- Hero Section -->
-        <section id="about" class="pt-12 lg:pt-20 flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-8">
-            <div class="w-full lg:w-3/5 space-y-6">
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-brandGreen text-xs font-medium border border-green-200 dark:border-green-800/50">
-                    <span class="w-2 h-2 rounded-full bg-brandGreen animate-pulse"></span>
-                    Available for New Opportunities
-                </div>
-                
-                <h1 class="text-5xl lg:text-7xl font-bold tracking-tight">
-                    Hi, I'm <span class="text-brandGreen">Srishti.</span>
-                </h1>
-                
-                <div class="font-mono text-lg lg:text-xl text-gray-600 dark:text-gray-400">
-                    > Cloud Support Engineer<span class="animate-pulse">_</span>
-                </div>
-                
-                <p class="text-gray-600 dark:text-gray-400 text-lg max-w-2xl leading-relaxed">
-                    Certified Cloud & Infrastructure Engineer with over 3.5 years of enterprise experience specializing in Azure environments, incident automation, and technical support. Backed by multi-cloud networking credentials (AZ-104, AZ-500, MCNA) and hands-on Python expertise.
-                </p>
-                
-                <div class="flex flex-wrap gap-4 pt-4">
-                    <a href="mailto:srishtilohanisharma@gmail.com" class="px-6 py-3 rounded-lg bg-brandGreen hover:bg-brandGreenHover text-gray-900 font-medium transition-colors">
-                        Contact Me
-                    </a>
-                    <a href="https://linkedin.com/in/srishti-lohani-sharma/" target="_blank" class="px-6 py-3 rounded-lg bg-gray-200 hover:bg-gray-300 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-900 dark:text-white font-medium transition-colors flex items-center gap-2">
-                        <i data-lucide="linkedin" class="w-4 h-4"></i> LinkedIn
-                    </a>
-                    <a href="https://github.com/SrishtiLohaniSharma" target="_blank" class="px-6 py-3 rounded-lg bg-gray-200 hover:bg-gray-300 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-900 dark:text-white font-medium transition-colors flex items-center gap-2">
-                        <i data-lucide="github" class="w-4 h-4"></i> GitHub
-                    </a>
-                </div>
-            </div>
-
-            <!-- Python Snippet Box -->
-            <div class="w-full lg:w-2/5">
-                <div class="bg-[#0d1117] border border-gray-700 rounded-xl overflow-hidden shadow-2xl">
-                    <div class="flex items-center px-4 py-3 bg-[#161b22] border-b border-gray-700 gap-2">
-                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
-                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
-                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
-                    </div>
-                    <div class="p-6 overflow-x-auto text-sm lg:text-base">
-<pre class="font-mono text-gray-300 code-block leading-relaxed">
-<span class="text-blue-400">import</span> sys
-<span class="text-blue-400">from</span> cloud <span class="text-blue-400">import</span> Azure
-
-<span class="text-blue-400">def</span> <span class="text-purple-400">resolve_incident</span>(alert):
-    <span class="text-gray-500"># RCA & Automation executed</span>
-    infra = Azure.connect()
-    <span class="text-blue-400">if</span> alert.status == <span class="text-green-400">'Critical'</span>:
-        infra.deploy_fix()
-        jira.update_ticket()
-    <span class="text-blue-400">return</span> <span class="text-green-400">"System 100% Uptime"</span>
-</pre>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Technical Arsenal Section -->
-        <section id="skills" class="space-y-8">
-            <div class="space-y-2">
-                <h2 class="text-3xl font-bold">Technical Arsenal</h2>
-                <div class="w-16 h-1 bg-brandGreen rounded"></div>
-            </div>
+        <section id="about" class="relative pt-32 pb-24 lg:pt-48 lg:pb-32 px-4 sm:px-6 lg:px-8 max-w-[1000px] mx-auto min-h-[90vh] flex flex-col justify-center">
+            <!-- Absolute background grid mapped strictly to hero -->
+            <div class="absolute inset-0 bg-grid z-[-1] mask-image: linear-gradient(to bottom, white, transparent);"></div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Card 1 -->
-                <div class="p-6 rounded-xl bg-white dark:bg-darkCard border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-md transition-shadow">
-                    <div class="w-10 h-10 rounded bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mb-6">
-                        <i data-lucide="cloud" class="w-5 h-5 text-blue-600 dark:text-blue-400"></i>
+            <div class="space-y-8 relative z-10">
+                <!-- Status Pill -->
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-200 dark:bg-gray-800/50 text-gray-700 dark:text-gray-300 font-mono text-xs border border-gray-300 dark:border-gray-700/50">
+                    <span class="w-2 h-2 rounded-full bg-brandGreen"></span>
+                    Immediate joiner • 15 days notice
+                </div>
+                
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 dark:text-white">
+                    Srishti Lohani Sharma
+                </h1>
+
+                <!-- Contact Meta Links -->
+                <div class="flex flex-wrap gap-x-6 gap-y-3 font-mono text-xs text-gray-600 dark:text-gray-400">
+                    <a href="mailto:srishtilohanisharma@gmail.com" class="flex items-center gap-2 hover:text-brandGreen transition-colors"><i data-lucide="mail" class="w-3.5 h-3.5"></i>srishtilohanisharma@gmail.com</a>
+                    <a href="https://linkedin.com/in/srishti-lohani-sharma/" target="_blank" class="flex items-center gap-2 hover:text-brandGreen transition-colors"><i data-lucide="linkedin" class="w-3.5 h-3.5"></i>LinkedIn</a>
+                    <a href="https://github.com/SrishtiLohaniSharma" target="_blank" class="flex items-center gap-2 hover:text-brandGreen transition-colors"><i data-lucide="github" class="w-3.5 h-3.5"></i>GitHub</a>
+                    <span class="flex items-center gap-2"><i data-lucide="phone" class="w-3.5 h-3.5"></i>+91 99193 40406</span>
+                    <span class="flex items-center gap-2"><i data-lucide="map-pin" class="w-3.5 h-3.5"></i>Lucknow, India</span>
+                </div>
+                
+                <div class="pt-6">
+                    <div class="font-mono text-xs text-brandGreen mb-4 tracking-widest uppercase">
+                        > WHOAMI
                     </div>
-                    <h3 class="font-semibold text-lg mb-4">Cloud & Infra</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 text-xs font-medium bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded border border-gray-200 dark:border-gray-700">Azure</span>
-                        <span class="px-3 py-1 text-xs font-medium bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded border border-gray-200 dark:border-gray-700">Active Directory</span>
-                        <span class="px-3 py-1 text-xs font-medium bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded border border-gray-200 dark:border-gray-700">IAM</span>
-                        <span class="px-3 py-1 text-xs font-medium bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded border border-gray-200 dark:border-gray-700">Hybrid Cloud</span>
-                        <span class="px-3 py-1 text-xs font-medium bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded border border-gray-200 dark:border-gray-700">Disaster Recovery</span>
-                    </div>
+                    <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] text-gray-900 dark:text-gray-100 max-w-4xl">
+                        <span class="text-brandGreen">Cloud & SRE Engineer</span> building reliable, automated infrastructure.
+                    </h2>
+                </div>
+                
+                <p class="text-gray-600 dark:text-gray-400 text-lg max-w-2xl leading-relaxed pt-2">
+                    Azure-certified (AZ-104, AZ-500) with 3.5+ years engineering observability, CI/CD, and incident response for enterprise-scale networks.
+                </p>
+
+                <!-- Skill Tags -->
+                <div class="flex flex-wrap gap-2 pt-2">
+                    <span class="px-3 py-1 bg-gray-200 dark:bg-gray-800/80 rounded border border-gray-300 dark:border-gray-700/50 text-xs font-mono dark:text-gray-300">Cloud Engineer</span>
+                    <span class="px-3 py-1 bg-gray-200 dark:bg-gray-800/80 rounded border border-gray-300 dark:border-gray-700/50 text-xs font-mono dark:text-gray-300">Site Reliability Engineer</span>
+                    <span class="px-3 py-1 bg-gray-200 dark:bg-gray-800/80 rounded border border-gray-300 dark:border-gray-700/50 text-xs font-mono dark:text-gray-300">DevOps Engineer</span>
+                    <span class="px-3 py-1 bg-gray-200 dark:bg-gray-800/80 rounded border border-gray-300 dark:border-gray-700/50 text-xs font-mono dark:text-gray-300">Cloud Support Engineer</span>
+                    <span class="px-3 py-1 bg-gray-200 dark:bg-gray-800/80 rounded border border-gray-300 dark:border-gray-700/50 text-xs font-mono dark:text-gray-300">Cloud Consultant</span>
+                </div>
+                
+                <!-- CTA Buttons -->
+                <div class="flex flex-wrap gap-4 pt-6">
+                    <a href="#contact" class="inline-flex items-center gap-2 px-6 py-3 rounded text-sm font-mono font-bold text-gray-900 bg-brandGreen hover:bg-brandGreenHover transition-colors">
+                        Contact me <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                    <a href="#" class="inline-flex items-center gap-2 px-6 py-3 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-darkBg hover:bg-gray-50 dark:hover:bg-gray-900 text-sm font-mono text-gray-900 dark:text-gray-300 transition-colors">
+                        <i data-lucide="download" class="w-4 h-4"></i> Download résumé
+                    </a>
                 </div>
 
-                <!-- Card 2 -->
-                <div class="p-6 rounded-xl bg-white dark:bg-darkCard border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-md transition-shadow">
-                    <div class="w-10 h-10 rounded bg-green-100 dark:bg-green-900/30 flex items-center justify-center mb-6">
-                        <i data-lucide="code" class="w-5 h-5 text-green-600 dark:text-brandGreen"></i>
+                <!-- Stats Row -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-12">
+                    <div class="border border-gray-200 dark:border-gray-800 rounded-lg p-5 bg-white dark:bg-[#0f0f0f]">
+                        <div class="text-3xl font-bold text-brandGreen mb-2">99%</div>
+                        <div class="font-mono text-[10px] tracking-widest text-gray-500 uppercase">SLA SUSTAINED</div>
                     </div>
-                    <h3 class="font-semibold text-lg mb-4">Code & Scripting</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 text-xs font-medium bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded border border-gray-200 dark:border-gray-700">Python</span>
-                        <span class="px-3 py-1 text-xs font-medium bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded border border-gray-200 dark:border-gray-700">Scripting</span>
-                        <span class="px-3 py-1 text-xs font-medium bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded border border-gray-200 dark:border-gray-700">Payload Parsing</span>
-                        <span class="px-3 py-1 text-xs font-medium bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded border border-gray-200 dark:border-gray-700">SQL Queries</span>
+                    <div class="border border-gray-200 dark:border-gray-800 rounded-lg p-5 bg-white dark:bg-[#0f0f0f]">
+                        <div class="text-3xl font-bold text-brandGreen mb-2">3.5+</div>
+                        <div class="font-mono text-[10px] tracking-widest text-gray-500 uppercase">YEARS EXPERIENCE</div>
                     </div>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="p-6 rounded-xl bg-white dark:bg-darkCard border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-md transition-shadow">
-                    <div class="w-10 h-10 rounded bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center mb-6">
-                        <i data-lucide="activity" class="w-5 h-5 text-purple-600 dark:text-purple-400"></i>
+                    <div class="border border-gray-200 dark:border-gray-800 rounded-lg p-5 bg-white dark:bg-[#0f0f0f]">
+                        <div class="text-3xl font-bold text-brandGreen mb-2">10min</div>
+                        <div class="font-mono text-[10px] tracking-widest text-gray-500 uppercase">AVG TICKET PICKUP</div>
                     </div>
-                    <h3 class="font-semibold text-lg mb-4">Operations & SRE</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 text-xs font-medium bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded border border-gray-200 dark:border-gray-700">Incident Management</span>
-                        <span class="px-3 py-1 text-xs font-medium bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded border border-gray-200 dark:border-gray-700">RCA</span>
-                        <span class="px-3 py-1 text-xs font-medium bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded border border-gray-200 dark:border-gray-700">Alertmanager</span>
-                        <span class="px-3 py-1 text-xs font-medium bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded border border-gray-200 dark:border-gray-700">ITIL Processes</span>
-                        <span class="px-3 py-1 text-xs font-medium bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded border border-gray-200 dark:border-gray-700">Jira Ticketing</span>
-                    </div>
-                </div>
-
-                <!-- Card 4 -->
-                <div class="p-6 rounded-xl bg-white dark:bg-darkCard border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-md transition-shadow">
-                    <div class="w-10 h-10 rounded bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center mb-6">
-                        <i data-lucide="network" class="w-5 h-5 text-orange-600 dark:text-orange-400"></i>
-                    </div>
-                    <h3 class="font-semibold text-lg mb-4">Networking</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 text-xs font-medium bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded border border-gray-200 dark:border-gray-700">Network Protocols</span>
-                        <span class="px-3 py-1 text-xs font-medium bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded border border-gray-200 dark:border-gray-700">Multi-cloud Networking</span>
-                        <span class="px-3 py-1 text-xs font-medium bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded border border-gray-200 dark:border-gray-700">CCNA Core</span>
+                    <div class="border border-gray-200 dark:border-gray-800 rounded-lg p-5 bg-white dark:bg-[#0f0f0f]">
+                        <div class="text-3xl font-bold text-brandGreen mb-2">15+</div>
+                        <div class="font-mono text-[10px] tracking-widest text-gray-500 uppercase">CERTIFICATIONS</div>
                     </div>
                 </div>
             </div>
         </section>
+
+        <!-- Divider -->
+        <div class="w-full h-px bg-gray-200 dark:bg-gray-800/80"></div>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-24 max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+                <div>
+                    <div class="font-mono text-xs text-brandGreen mb-4 tracking-widest uppercase flex items-center gap-2">
+                        <span>02</span> <span class="text-gray-500">/</span> <span>SKILLS MATRIX</span>
+                    </div>
+                    <h2 class="text-4xl font-bold tracking-tight text-gray-900 dark:text-white">Skills Matrix</h2>
+                </div>
+                <div class="text-gray-500 dark:text-gray-400 pb-1 max-w-sm text-sm">
+                    Operating cloud, automation, and observability — end to end.
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[1px] bg-gray-200 dark:bg-gray-800 border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden">
+                
+                <!-- Skill Block 1 -->
+                <div class="bg-white dark:bg-[#0d0d0d] p-8 hover:bg-gray-50 dark:hover:bg-[#111] transition-colors">
+                    <div class="font-mono text-[10px] text-brandGreen mb-3 tracking-widest uppercase">> ~/SKILLS/CLOUD/</div>
+                    <h3 class="text-lg font-bold mb-6 text-gray-900 dark:text-white">Cloud Platforms</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800/80 rounded-full text-xs font-mono text-gray-700 dark:text-gray-300">Microsoft Azure</span>
+                        <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800/80 rounded-full text-xs font-mono text-gray-700 dark:text-gray-300">AWS</span>
+                        <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800/80 rounded-full text-xs font-mono text-gray-700 dark:text-gray-300">Multi-Cloud (Aviatrix)</span>
+                        <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800/80 rounded-full text-xs font-mono text-gray-700 dark:text-gray-300">Hybrid Cloud</span>
+                    </div>
+                </div>
+
+                <!-- Skill Block 2 -->
+                <div class="bg-white dark:bg-[#0d0d0d] p-8 hover:bg-gray-50 dark:hover:bg-[#111] transition-colors">
+                    <div class="font-mono text-[10px] text-brandGreen mb-3 tracking-widest uppercase">> ~/SKILLS/SRE/</div>
+                    <h3 class="text-lg font-bold mb-6 text-gray-900 dark:text-white">SRE & Observability</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800/80 rounded-full text-xs font-mono text-gray-700 dark:text-gray-300">Prometheus</span>
+                        <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800/80 rounded-full text-xs font-mono text-gray-700 dark:text-gray-300">Grafana</span>
+                        <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800/80 rounded-full text-xs font-mono text-gray-700 dark:text-gray-300">Site24x7</span>
+                        <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800/80 rounded-full text-xs font-mono text-gray-700 dark:text-gray-300">APM</span>
+                        <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800/80 rounded-full text-xs font-mono text-gray-700 dark:text-gray-300">NNMi</span>
+                        <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800/80 rounded-full text-xs font-mono text-gray-700 dark:text-gray-300">Cisco Prime</span>
+                        <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800/80 rounded-full text-xs font-mono text-gray-700 dark:text-gray-300">Incident Response</span>
+                        <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800/80 rounded-full text-xs font-mono text-gray-700 dark:text-gray-300">RCA</span>
+                        <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800/80 rounded-full text-xs font-mono text-gray-700 dark:text-gray-300">MTTR Reduction</span>
+                    </div>
+                </div>
+
+                <!-- Skill Block 3 -->
+                <div class="bg-white dark:bg-[#0d0d0d] p-8 hover:bg-gray-50 dark:hover:bg-[#111] transition-colors">
+                    <div class="font-mono text-[10px] text-brandGreen mb-3 tracking-widest uppercase">> ~/SKILLS/CICD/</div>
+                    <h3 class="text-lg font-bold mb-6 text-gray-900 dark:text-white">CI/CD & Automation</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800/80 rounded-full text-xs font-mono text-gray-700 dark:text-gray-300">CI/CD Pipelines</span>
+                        <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800/80 rounded-full text-xs font-mono text-gray-700 dark:text-gray-300">GitOps</span>
+                        <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800/80 rounded-full text-xs font-mono text-gray-700 dark:text-gray-300">Infrastructure as Code</span>
+                        <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800/80 rounded-full text-xs font-mono text-gray-700 dark:text-gray-300">Automated Remediation</span>
+                        <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800/80 rounded-full text-xs font-mono text-gray-700 dark:text-gray-300">Alertmanager</span>
+                    </div>
+                </div>
+
+                <!-- Skill Block 4 -->
+                <div class="bg-white dark:bg-[#0d0d0d] p-8 hover:bg-gray-50 dark:hover:bg-[#111] transition-colors">
+                    <div class="font-mono text-[10px] text-brandGreen mb-3 tracking-widest uppercase">> ~/SKILLS/CONTAINERS/</div>
+                    <h3 class="text-lg font-bold mb-6 text-gray-900 dark:text-white">Containers & Orchestration</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800/80 rounded-full text-xs font-mono text-gray-700 dark:text-gray-300">Docker</span>
+                        <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800/80 rounded-full text-xs font-mono text-gray-700 dark:text-gray-300">Kubernetes</span>
+                        <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800/80 rounded-full text-xs font-mono text-gray-700 dark:text-gray-300">Container Networking</span>
+                    </div>
+                </div>
+
+                <!-- Skill Block 5 -->
+                <div class="bg-white dark:bg-[#0d0d0d] p-8 hover:bg-gray-50 dark:hover:bg-[#111] transition-colors">
+                    <div class="font-mono text-[10px] text-brandGreen mb-3 tracking-widest uppercase">> ~/SKILLS/CODE/</div>
+                    <h3 class="text-lg font-bold mb-6 text-gray-900 dark:text-white">Scripting & Code</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800/80 rounded-full text-xs font-mono text-gray-700 dark:text-gray-300">Python</span>
+                        <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800/80 rounded-full text-xs font-mono text-gray-700 dark:text-gray-300">Bash</span>
+                        <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800/80 rounded-full text-xs font-mono text-gray-700 dark:text-gray-300">Linux</span>
+                        <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800/80 rounded-full text-xs font-mono text-gray-700 dark:text-gray-300">YAML</span>
+                    </div>
+                </div>
+
+                <!-- Skill Block 6 -->
+                <div class="bg-white dark:bg-[#0d0d0d] p-8 hover:bg-gray-50 dark:hover:bg-[#111] transition-colors">
+                    <div class="font-mono text-[10px] text-brandGreen mb-3 tracking-widest uppercase">> ~/SKILLS/NETWORK/</div>
+                    <h3 class="text-lg font-bold mb-6 text-gray-900 dark:text-white">Networking</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800/80 rounded-full text-xs font-mono text-gray-700 dark:text-gray-300">TCP/IP</span>
+                        <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800/80 rounded-full text-xs font-mono text-gray-700 dark:text-gray-300">DNS</span>
+                        <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800/80 rounded-full text-xs font-mono text-gray-700 dark:text-gray-300">Routing & Switching</span>
+                        <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800/80 rounded-full text-xs font-mono text-gray-700 dark:text-gray-300">LAN/WAN</span>
+                        <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800/80 rounded-full text-xs font-mono text-gray-700 dark:text-gray-300">Load Balancers</span>
+                        <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800/80 rounded-full text-xs font-mono text-gray-700 dark:text-gray-300">Firewalls</span>
+                        <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800/80 rounded-full text-xs font-mono text-gray-700 dark:text-gray-300">CCNA</span>
+                    </div>
+                </div>
+
+                <!-- Skill Block 7 -->
+                <div class="bg-white dark:bg-[#0d0d0d] p-8 hover:bg-gray-50 dark:hover:bg-[#111] transition-colors md:col-span-2 lg:col-span-1">
+                    <div class="font-mono text-[10px] text-brandGreen mb-3 tracking-widest uppercase">> ~/SKILLS/ITSM/</div>
+                    <h3 class="text-lg font-bold mb-6 text-gray-900 dark:text-white">ITSM & Process</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800/80 rounded-full text-xs font-mono text-gray-700 dark:text-gray-300">ServiceNow</span>
+                        <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800/80 rounded-full text-xs font-mono text-gray-700 dark:text-gray-300">ITIL</span>
+                        <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800/80 rounded-full text-xs font-mono text-gray-700 dark:text-gray-300">Change Management</span>
+                        <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800/80 rounded-full text-xs font-mono text-gray-700 dark:text-gray-300">Problem Management</span>
+                        <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800/80 rounded-full text-xs font-mono text-gray-700 dark:text-gray-300">GSEP</span>
+                        <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800/80 rounded-full text-xs font-mono text-gray-700 dark:text-gray-300">Jira</span>
+                    </div>
+                </div>
+
+                <!-- Skill Block 8 -->
+                <div class="bg-white dark:bg-[#0d0d0d] p-8 hover:bg-gray-50 dark:hover:bg-[#111] transition-colors md:col-span-2 lg:col-span-1 lg:col-start-2">
+                    <div class="font-mono text-[10px] text-brandGreen mb-3 tracking-widest uppercase">> ~/SKILLS/OS/</div>
+                    <h3 class="text-lg font-bold mb-6 text-gray-900 dark:text-white">Operating Systems</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800/80 rounded-full text-xs font-mono text-gray-700 dark:text-gray-300">Linux</span>
+                        <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800/80 rounded-full text-xs font-mono text-gray-700 dark:text-gray-300">Windows Server</span>
+                    </div>
+                </div>
+                
+                <!-- Blank filler for grid -->
+                <div class="bg-white dark:bg-[#0d0d0d] p-8 hidden lg:block"></div>
+                
+            </div>
+        </section>
+
+        <!-- Divider -->
+        <div class="w-full h-px bg-gray-200 dark:bg-gray-800/80"></div>
 
         <!-- Experience Section -->
-        <section id="experience" class="space-y-8">
-            <div class="space-y-2">
-                <h2 class="text-3xl font-bold">Experience Log</h2>
-                <div class="w-16 h-1 bg-brandGreen rounded"></div>
+        <section id="experience" class="py-24 max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-6">
+                <div>
+                    <div class="font-mono text-xs text-brandGreen mb-4 tracking-widest uppercase flex items-center gap-2">
+                        <span>03</span> <span class="text-gray-500">/</span> <span>EXPERIENCE</span>
+                    </div>
+                    <h2 class="text-4xl font-bold tracking-tight text-gray-900 dark:text-white">Experience</h2>
+                </div>
+                <div class="text-gray-500 dark:text-gray-400 pb-1 max-w-sm text-sm">
+                    3.5+ years engineering infrastructure for Boeing via DXC Technology.
+                </div>
             </div>
 
-            <div class="relative border-l border-gray-200 dark:border-gray-800 ml-3 md:ml-4 space-y-12">
+            <div class="relative border-l border-gray-300 dark:border-gray-800 ml-4 space-y-16">
                 
                 <!-- Job 1 -->
-                <div class="relative pl-8 md:pl-10">
-                    <div class="absolute -left-1.5 md:-left-1.5 top-1.5 w-3 h-3 rounded-full border-2 border-brandGreen bg-white dark:bg-darkBg"></div>
+                <div class="relative pl-10">
+                    <div class="absolute -left-[9px] top-1 w-4 h-4 rounded-full border-[3px] border-brandGreen bg-white dark:bg-darkBg"></div>
                     
-                    <div class="flex flex-col md:flex-row md:items-center justify-between mb-2">
-                        <h3 class="text-xl font-bold text-gray-900 dark:text-white">Analyst 1 Infrastructure Services</h3>
-                        <span class="text-xs font-mono px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-brandGreen rounded mt-2 md:mt-0 w-fit">Dec 2023 - Jul 2024</span>
+                    <div class="font-mono text-xs text-gray-500 dark:text-gray-400 mb-3 tracking-widest uppercase">
+                        <span class="text-brandGreen">JUL 2023 — JUL 2024</span> <span class="mx-2">•</span> 1 YR 1 MO
                     </div>
-                    <p class="text-gray-500 dark:text-gray-400 font-medium mb-4">DXC Technology</p>
-                    <ul class="space-y-3 text-gray-600 dark:text-gray-400">
-                        <li class="flex gap-2 items-start"><span class="text-brandGreen mt-1">•</span> Provided Tier 2 and Tier 3 technical support for enterprise infrastructure, ensuring high availability and reliable system performance.</li>
-                        <li class="flex gap-2 items-start"><span class="text-brandGreen mt-1">•</span> Executed detailed root cause analysis (RCA) on critical system outages, collaborating to deploy preventative measures.</li>
-                        <li class="flex gap-2 items-start"><span class="text-brandGreen mt-1">•</span> Authored comprehensive knowledge base articles and operational documentation to optimize issue resolution times.</li>
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">Analyst — Infrastructure Services</h3>
+                    <p class="text-sm font-mono text-gray-600 dark:text-gray-400 mb-6 flex items-center gap-2">
+                        <i data-lucide="building" class="w-3.5 h-3.5"></i> <span class="text-gray-900 dark:text-white font-semibold">DXC Technology</span> — for Boeing • Bengaluru, India
+                    </p>
+                    
+                    <ul class="space-y-4 text-gray-600 dark:text-gray-400 mb-6 text-sm md:text-base leading-relaxed">
+                        <li class="flex items-start gap-3">
+                            <span class="text-brandGreen mt-1 text-[10px]">▶</span>
+                            Administered enterprise system configurations and implemented stringent security policies across a globally distributed Boeing network.
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-brandGreen mt-1 text-[10px]">▶</span>
+                            Optimised system performance metrics, executed backups, restores, and patching to support scalable business operations.
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-brandGreen mt-1 text-[10px]">▶</span>
+                            Managed user accounts, vendor coordination, and trained end users on operational tooling.
+                        </li>
                     </ul>
+
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-2 py-1 bg-gray-200 dark:bg-gray-800/80 rounded text-xs font-mono text-gray-600 dark:text-gray-400">Linux</span>
+                        <span class="px-2 py-1 bg-gray-200 dark:bg-gray-800/80 rounded text-xs font-mono text-gray-600 dark:text-gray-400">Security</span>
+                        <span class="px-2 py-1 bg-gray-200 dark:bg-gray-800/80 rounded text-xs font-mono text-gray-600 dark:text-gray-400">ITIL</span>
+                        <span class="px-2 py-1 bg-gray-200 dark:bg-gray-800/80 rounded text-xs font-mono text-gray-600 dark:text-gray-400">Vendor Mgmt</span>
+                    </div>
                 </div>
 
                 <!-- Job 2 -->
-                <div class="relative pl-8 md:pl-10">
-                    <div class="absolute -left-1.5 md:-left-1.5 top-1.5 w-3 h-3 rounded-full border-2 border-gray-400 dark:border-gray-600 bg-white dark:bg-darkBg"></div>
+                <div class="relative pl-10">
+                    <div class="absolute -left-[9px] top-1 w-4 h-4 rounded-full border-[3px] border-brandGreen bg-white dark:bg-darkBg"></div>
                     
-                    <div class="flex flex-col md:flex-row md:items-center justify-between mb-2">
-                        <h3 class="text-xl font-bold text-gray-900 dark:text-white">Professional 1 System Administrator</h3>
-                        <span class="text-xs font-mono px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-500 rounded mt-2 md:mt-0 w-fit">Jul 2023 - Dec 2023</span>
+                    <div class="font-mono text-xs text-gray-500 dark:text-gray-400 mb-3 tracking-widest uppercase">
+                        <span class="text-brandGreen">MAR 2021 — JUN 2023</span> <span class="mx-2">•</span> 2 YRS 4 MOS
                     </div>
-                    <p class="text-gray-500 dark:text-gray-400 font-medium mb-4">DXC Technology</p>
-                    <ul class="space-y-3 text-gray-600 dark:text-gray-400">
-                        <li class="flex gap-2 items-start"><span class="text-gray-400 dark:text-gray-600 mt-1">•</span> Aggressively managed Active Directory, Identity & Access Management (IAM), and endpoint configurations for strict compliance.</li>
-                        <li class="flex gap-2 items-start"><span class="text-gray-400 dark:text-gray-600 mt-1">•</span> Utilized ITIL-based service management tools to track, escalate, and resolve complex application/network incidents within strict SLAs.</li>
-                        <li class="flex gap-2 items-start"><span class="text-gray-400 dark:text-gray-600 mt-1">•</span> Assisted in rollout of system patches, upgrades, and large-scale cloud deployments globally.</li>
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">Network Analyst / Prof. SysAdmin</h3>
+                    <p class="text-sm font-mono text-gray-600 dark:text-gray-400 mb-6 flex items-center gap-2">
+                        <i data-lucide="building" class="w-3.5 h-3.5"></i> <span class="text-gray-900 dark:text-white font-semibold">DXC Technology</span> — for Boeing • Bengaluru, India
+                    </p>
+                    
+                    <ul class="space-y-4 text-gray-600 dark:text-gray-400 mb-6 text-sm md:text-base leading-relaxed">
+                        <li class="flex items-start gap-3">
+                            <span class="text-brandGreen mt-1 text-[10px]">▶</span>
+                            Spearheaded incident response and improved observability by analysing APM/Site24x7 telemetry — reducing Mean Time to Resolution (MTTR) across the Boeing batch environment.
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-brandGreen mt-1 text-[10px]">▶</span>
+                            Maintained highly available enterprise infrastructure; executed RCA for critical outages across load balancers, firewalls, and server environments — sustaining 99% SLA.
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-brandGreen mt-1 text-[10px]">▶</span>
+                            Worked on all GSEP incident tickets within 10 minutes of arrival, coordinating across ISP carriers, WAN/MAN teams, and application owners.
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-brandGreen mt-1 text-[10px]">▶</span>
+                            Operated ServiceNow, NNMi, Cisco Prime, and HP Service Manager for monitoring, alerting, and change management at enterprise scale.
+                        </li>
                     </ul>
-                </div>
 
-                <!-- Job 3 -->
-                <div class="relative pl-8 md:pl-10">
-                    <div class="absolute -left-1.5 md:-left-1.5 top-1.5 w-3 h-3 rounded-full border-2 border-gray-400 dark:border-gray-600 bg-white dark:bg-darkBg"></div>
-                    
-                    <div class="flex flex-col md:flex-row md:items-center justify-between mb-2">
-                        <h3 class="text-xl font-bold text-gray-900 dark:text-white">Associate Professional Software Engineer</h3>
-                        <span class="text-xs font-mono px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-500 rounded mt-2 md:mt-0 w-fit">Mar 2021 - Jul 2023</span>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-2 py-1 bg-gray-200 dark:bg-gray-800/80 rounded text-xs font-mono text-gray-600 dark:text-gray-400">SRE</span>
+                        <span class="px-2 py-1 bg-gray-200 dark:bg-gray-800/80 rounded text-xs font-mono text-gray-600 dark:text-gray-400">ServiceNow</span>
+                        <span class="px-2 py-1 bg-gray-200 dark:bg-gray-800/80 rounded text-xs font-mono text-gray-600 dark:text-gray-400">APM</span>
+                        <span class="px-2 py-1 bg-gray-200 dark:bg-gray-800/80 rounded text-xs font-mono text-gray-600 dark:text-gray-400">RCA</span>
+                        <span class="px-2 py-1 bg-gray-200 dark:bg-gray-800/80 rounded text-xs font-mono text-gray-600 dark:text-gray-400">ITIL</span>
+                        <span class="px-2 py-1 bg-gray-200 dark:bg-gray-800/80 rounded text-xs font-mono text-gray-600 dark:text-gray-400">Change Mgmt</span>
                     </div>
-                    <p class="text-gray-500 dark:text-gray-400 font-medium mb-4">DXC Technology</p>
-                    <ul class="space-y-3 text-gray-600 dark:text-gray-400">
-                        <li class="flex gap-2 items-start"><span class="text-gray-400 dark:text-gray-600 mt-1">•</span> Resolved high-volume daily service requests, demonstrating acute problem-solving in a fast-paced tech support environment.</li>
-                        <li class="flex gap-2 items-start"><span class="text-gray-400 dark:text-gray-600 mt-1">•</span> Administered core computing environments including Windows OS, standard software suites, and basic SQL database querying tasks.</li>
-                    </ul>
                 </div>
 
             </div>
         </section>
 
-        <!-- Projects & Credentials Section -->
-        <section id="projects" class="space-y-8">
-            <div class="space-y-2">
-                <h2 class="text-3xl font-bold">Projects & Credentials</h2>
-                <div class="w-16 h-1 bg-brandGreen rounded"></div>
+        <!-- Divider -->
+        <div class="w-full h-px bg-gray-200 dark:bg-gray-800/80"></div>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-24 max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+                <div>
+                    <div class="font-mono text-xs text-brandGreen mb-4 tracking-widest uppercase flex items-center gap-2">
+                        <span>04</span> <span class="text-gray-500">/</span> <span>PROJECTS</span>
+                    </div>
+                    <h2 class="text-4xl font-bold tracking-tight text-gray-900 dark:text-white">Projects</h2>
+                </div>
+                <div class="text-gray-500 dark:text-gray-400 pb-1 max-w-sm text-sm">
+                    Side work building production-grade SRE tooling.
+                </div>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 
-                <!-- Left Col: Projects -->
-                <div class="bg-white dark:bg-darkCard border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-                    <div class="bg-gray-50 dark:bg-gray-800/50 px-6 py-4 border-b border-gray-200 dark:border-gray-800">
-                        <h3 class="font-bold text-lg text-gray-900 dark:text-white">AIMS Framework</h3>
-                    </div>
-                    <div class="p-6 space-y-4">
-                        <h4 class="font-mono text-brandGreen text-sm">Automated Incident Management System (Hybrid Cloud)</h4>
-                        <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
-                            Architected a robust local/hybrid-cloud incident automation framework connecting monitoring alerts to an intelligent Python-based routing brain.
-                        </p>
-                        <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400 border-l-2 border-gray-200 dark:border-gray-700 pl-4 ml-2">
-                            <li>Engineered automated payload parsing for Alertmanager.</li>
-                            <li>Integrated real-time system monitoring with Jira to autonomously update tickets.</li>
-                            <li>Programmed an automated remediation dispatcher with default safe dry-run mode.</li>
-                        </ul>
-                        <div class="flex flex-wrap gap-2 pt-4">
-                            <span class="px-2 py-1 text-xs bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded">Python</span>
-                            <span class="px-2 py-1 text-xs bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded">Alertmanager</span>
-                            <span class="px-2 py-1 text-xs bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded">Jira API</span>
-                            <span class="px-2 py-1 text-xs bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded">Automation</span>
+                <!-- Project Card -->
+                <div class="bg-white dark:bg-[#0f0f0f] border border-gray-200 dark:border-gray-800 rounded-xl p-8 hover:border-gray-300 dark:hover:border-gray-700 transition-colors group">
+                    <div class="flex justify-between items-start mb-6">
+                        <div class="font-mono text-xs text-brandGreen tracking-widest uppercase flex items-center gap-2">
+                            <i data-lucide="folder" class="w-4 h-4"></i> 2026 (IN DEVELOPMENT)
                         </div>
+                        <a href="https://github.com/SrishtiLohaniSharma" target="_blank" class="text-gray-400 hover:text-brandGreen transition-colors">
+                            <i data-lucide="external-link" class="w-5 h-5"></i>
+                        </a>
                     </div>
-                </div>
-
-                <!-- Right Col: Certs & Education -->
-                <div class="space-y-6">
                     
-                    <!-- Certs Box -->
-                    <div class="bg-white dark:bg-darkCard border border-gray-200 dark:border-gray-800 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                        <h3 class="font-bold text-lg mb-6">Active Certifications</h3>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div class="p-4 border border-gray-200 dark:border-gray-700/50 bg-gray-50 dark:bg-gray-800/20 rounded-lg">
-                                <h4 class="font-bold text-gray-900 dark:text-white">AZ-104</h4>
-                                <p class="text-xs text-gray-500 mt-1">Azure Administrator</p>
-                            </div>
-                            <div class="p-4 border border-gray-200 dark:border-gray-700/50 bg-gray-50 dark:bg-gray-800/20 rounded-lg">
-                                <h4 class="font-bold text-gray-900 dark:text-white">AZ-500</h4>
-                                <p class="text-xs text-gray-500 mt-1">Azure Security Eng.</p>
-                            </div>
-                            <div class="p-4 border border-gray-200 dark:border-gray-700/50 bg-gray-50 dark:bg-gray-800/20 rounded-lg">
-                                <h4 class="font-bold text-gray-900 dark:text-white">CCNA</h4>
-                                <p class="text-xs text-gray-500 mt-1">Network Associate</p>
-                            </div>
-                            <div class="p-4 border border-gray-200 dark:border-gray-700/50 bg-gray-50 dark:bg-gray-800/20 rounded-lg">
-                                <h4 class="font-bold text-gray-900 dark:text-white">MCNA</h4>
-                                <p class="text-xs text-gray-500 mt-1">Aviatrix Certified</p>
-                            </div>
-                        </div>
-                        <p class="text-xs text-gray-500 dark:text-gray-500 mt-4">
-                            Additional: Azure Fundamentals (AZ-900), Data Fundamentals (DP-900)
-                        </p>
-                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">AIMS — Automated Incident Management System</h3>
+                    <p class="font-mono text-xs text-gray-500 dark:text-gray-500 mb-6">Self-directed • Hybrid Cloud</p>
+                    
+                    <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-6">
+                        A local/hybrid-cloud incident automation pipeline that wires monitoring alerts to a Python decisioning engine. Parses Alertmanager payloads, classifies incidents, tracks alert state, optionally syncs Jira tickets, and dispatches remediation actions — safely behind explicit dry-run switches.
+                    </p>
 
-                    <!-- Education Box -->
-                    <div class="bg-white dark:bg-darkCard border border-gray-200 dark:border-gray-800 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                        <h3 class="font-bold text-lg mb-6">Education</h3>
-                        <div class="space-y-6">
-                            <div class="flex justify-between items-start">
-                                <div>
-                                    <h4 class="font-bold text-gray-900 dark:text-white text-sm">Executive M. Tech | Cloud Computing</h4>
-                                    <p class="text-xs text-gray-500 mt-1">IIT Patna (Remote)</p>
-                                </div>
-                                <span class="text-xs font-mono text-gray-500">Exp. 2026</span>
-                            </div>
-                            <div class="flex justify-between items-start">
-                                <div>
-                                    <h4 class="font-bold text-gray-900 dark:text-white text-sm">B. Tech | Computer Science</h4>
-                                    <p class="text-xs text-gray-500 mt-1">BBDNIIT, Lucknow</p>
-                                </div>
-                                <span class="text-xs font-mono text-gray-500">2020</span>
-                            </div>
-                        </div>
+                    <ul class="space-y-3 text-gray-600 dark:text-gray-400 mb-8 text-sm leading-relaxed">
+                        <li class="flex items-start gap-3">
+                            <span class="text-brandGreen mt-1 text-[10px]">▶</span>
+                            Observe -> Detect -> Act loop wired locally with Alertmanager + Python brain.
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-brandGreen mt-1 text-[10px]">▶</span>
+                            Jira and AWS remediation actions gated behind safety switches for controlled rollouts.
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-brandGreen mt-1 text-[10px]">▶</span>
+                            Designed for hybrid-cloud demo and dev environments; pluggable handlers for new alert types.
+                        </li>
+                    </ul>
+
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-2 py-1 bg-gray-100 dark:bg-[#151515] rounded border border-gray-200 dark:border-gray-800 text-xs font-mono text-gray-600 dark:text-gray-400">Python</span>
+                        <span class="px-2 py-1 bg-gray-100 dark:bg-[#151515] rounded border border-gray-200 dark:border-gray-800 text-xs font-mono text-gray-600 dark:text-gray-400">Alertmanager</span>
+                        <span class="px-2 py-1 bg-gray-100 dark:bg-[#151515] rounded border border-gray-200 dark:border-gray-800 text-xs font-mono text-gray-600 dark:text-gray-400">AWS</span>
+                        <span class="px-2 py-1 bg-gray-100 dark:bg-[#151515] rounded border border-gray-200 dark:border-gray-800 text-xs font-mono text-gray-600 dark:text-gray-400">Jira</span>
+                        <span class="px-2 py-1 bg-gray-100 dark:bg-[#151515] rounded border border-gray-200 dark:border-gray-800 text-xs font-mono text-gray-600 dark:text-gray-400">Automation</span>
+                        <span class="px-2 py-1 bg-gray-100 dark:bg-[#151515] rounded border border-gray-200 dark:border-gray-800 text-xs font-mono text-gray-600 dark:text-gray-400">SRE</span>
                     </div>
                 </div>
 
+            </div>
+        </section>
+
+        <!-- Divider -->
+        <div class="w-full h-px bg-gray-200 dark:bg-gray-800/80"></div>
+
+        <!-- Certifications & Education Section -->
+        <section id="certifications" class="py-24 max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+                <div>
+                    <div class="font-mono text-xs text-brandGreen mb-4 tracking-widest uppercase flex items-center gap-2">
+                        <span>05</span> <span class="text-gray-500">/</span> <span>CERTIFICATIONS & EDUCATION</span>
+                    </div>
+                    <h2 class="text-4xl font-bold tracking-tight text-gray-900 dark:text-white">Certifications & Education</h2>
+                </div>
+                <div class="text-gray-500 dark:text-gray-400 pb-1 max-w-sm text-sm">
+                    Continuous learning across Azure, networking, and security.
+                </div>
+            </div>
+
+            <!-- Certs Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-20">
+                <!-- Cert 1 -->
+                <div class="flex items-center gap-4 bg-white dark:bg-[#0f0f0f] border border-gray-200 dark:border-gray-800 rounded-xl p-5 hover:border-gray-300 dark:hover:border-gray-700 transition-colors">
+                    <div class="w-12 h-12 flex-shrink-0 bg-gray-100 dark:bg-[#151515] rounded-lg border border-gray-200 dark:border-gray-800 flex items-center justify-center text-gray-500 dark:text-gray-400">
+                        <i data-lucide="award" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <div class="font-mono text-[10px] text-gray-500 tracking-widest uppercase mb-1">MICROSOFT <span class="text-brandGreen">AZ-104</span></div>
+                        <h4 class="font-bold text-sm text-gray-900 dark:text-white mb-0.5">Azure Administrator Associate</h4>
+                        <div class="font-mono text-[10px] text-gray-500">Associate • 2023</div>
+                    </div>
+                </div>
+
+                <!-- Cert 2 -->
+                <div class="flex items-center gap-4 bg-white dark:bg-[#0f0f0f] border border-gray-200 dark:border-gray-800 rounded-xl p-5 hover:border-gray-300 dark:hover:border-gray-700 transition-colors">
+                    <div class="w-12 h-12 flex-shrink-0 bg-gray-100 dark:bg-[#151515] rounded-lg border border-gray-200 dark:border-gray-800 flex items-center justify-center text-gray-500 dark:text-gray-400">
+                        <i data-lucide="award" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <div class="font-mono text-[10px] text-gray-500 tracking-widest uppercase mb-1">MICROSOFT <span class="text-brandGreen">AZ-500</span></div>
+                        <h4 class="font-bold text-sm text-gray-900 dark:text-white mb-0.5">Azure Security Engineer Associate</h4>
+                        <div class="font-mono text-[10px] text-gray-500">Associate • 2023</div>
+                    </div>
+                </div>
+
+                <!-- Cert 3 -->
+                <div class="flex items-center gap-4 bg-white dark:bg-[#0f0f0f] border border-gray-200 dark:border-gray-800 rounded-xl p-5 hover:border-gray-300 dark:hover:border-gray-700 transition-colors">
+                    <div class="w-12 h-12 flex-shrink-0 bg-gray-100 dark:bg-[#151515] rounded-lg border border-gray-200 dark:border-gray-800 flex items-center justify-center text-gray-500 dark:text-gray-400">
+                        <i data-lucide="award" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <div class="font-mono text-[10px] text-gray-500 tracking-widest uppercase mb-1">MICROSOFT <span class="text-brandGreen">AZ-900</span></div>
+                        <h4 class="font-bold text-sm text-gray-900 dark:text-white mb-0.5">Azure Fundamentals</h4>
+                        <div class="font-mono text-[10px] text-gray-500">Fundamental • –</div>
+                    </div>
+                </div>
+
+                <!-- Cert 4 -->
+                <div class="flex items-center gap-4 bg-white dark:bg-[#0f0f0f] border border-gray-200 dark:border-gray-800 rounded-xl p-5 hover:border-gray-300 dark:hover:border-gray-700 transition-colors">
+                    <div class="w-12 h-12 flex-shrink-0 bg-gray-100 dark:bg-[#151515] rounded-lg border border-gray-200 dark:border-gray-800 flex items-center justify-center text-gray-500 dark:text-gray-400">
+                        <i data-lucide="award" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <div class="font-mono text-[10px] text-gray-500 tracking-widest uppercase mb-1">MICROSOFT <span class="text-brandGreen">AI-900</span></div>
+                        <h4 class="font-bold text-sm text-gray-900 dark:text-white mb-0.5">Azure AI Fundamentals</h4>
+                        <div class="font-mono text-[10px] text-gray-500">Fundamental • –</div>
+                    </div>
+                </div>
+
+                <!-- Cert 5 -->
+                <div class="flex items-center gap-4 bg-white dark:bg-[#0f0f0f] border border-gray-200 dark:border-gray-800 rounded-xl p-5 hover:border-gray-300 dark:hover:border-gray-700 transition-colors">
+                    <div class="w-12 h-12 flex-shrink-0 bg-gray-100 dark:bg-[#151515] rounded-lg border border-gray-200 dark:border-gray-800 flex items-center justify-center text-gray-500 dark:text-gray-400">
+                        <i data-lucide="award" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <div class="font-mono text-[10px] text-gray-500 tracking-widest uppercase mb-1">MICROSOFT <span class="text-brandGreen">SC-900</span></div>
+                        <h4 class="font-bold text-sm text-gray-900 dark:text-white mb-0.5">Azure Security, Compliance & Identity</h4>
+                        <div class="font-mono text-[10px] text-gray-500">Fundamental • –</div>
+                    </div>
+                </div>
+
+                <!-- Cert 6 -->
+                <div class="flex items-center gap-4 bg-white dark:bg-[#0f0f0f] border border-gray-200 dark:border-gray-800 rounded-xl p-5 hover:border-gray-300 dark:hover:border-gray-700 transition-colors">
+                    <div class="w-12 h-12 flex-shrink-0 bg-gray-100 dark:bg-[#151515] rounded-lg border border-gray-200 dark:border-gray-800 flex items-center justify-center text-gray-500 dark:text-gray-400">
+                        <i data-lucide="award" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <div class="font-mono text-[10px] text-gray-500 tracking-widest uppercase mb-1">MICROSOFT <span class="text-brandGreen">DP-900</span></div>
+                        <h4 class="font-bold text-sm text-gray-900 dark:text-white mb-0.5">Azure Data Fundamentals</h4>
+                        <div class="font-mono text-[10px] text-gray-500">Fundamental • –</div>
+                    </div>
+                </div>
+
+                <!-- Cert 7 -->
+                <div class="flex items-center gap-4 bg-white dark:bg-[#0f0f0f] border border-gray-200 dark:border-gray-800 rounded-xl p-5 hover:border-gray-300 dark:hover:border-gray-700 transition-colors">
+                    <div class="w-12 h-12 flex-shrink-0 bg-gray-100 dark:bg-[#151515] rounded-lg border border-gray-200 dark:border-gray-800 flex items-center justify-center text-gray-500 dark:text-gray-400">
+                        <i data-lucide="award" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <div class="font-mono text-[10px] text-gray-500 tracking-widest uppercase mb-1">CISCO <span class="text-brandGreen">CCNA</span></div>
+                        <h4 class="font-bold text-sm text-gray-900 dark:text-white mb-0.5">Cisco Certified Network Associate</h4>
+                        <div class="font-mono text-[10px] text-gray-500">Associate • 2022 — 2025</div>
+                    </div>
+                </div>
+
+                <!-- Cert 8 -->
+                <div class="flex items-center gap-4 bg-white dark:bg-[#0f0f0f] border border-gray-200 dark:border-gray-800 rounded-xl p-5 hover:border-gray-300 dark:hover:border-gray-700 transition-colors">
+                    <div class="w-12 h-12 flex-shrink-0 bg-gray-100 dark:bg-[#151515] rounded-lg border border-gray-200 dark:border-gray-800 flex items-center justify-center text-gray-500 dark:text-gray-400">
+                        <i data-lucide="award" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <div class="font-mono text-[10px] text-gray-500 tracking-widest uppercase mb-1">AVIATRIX <span class="text-brandGreen">MCNA</span></div>
+                        <h4 class="font-bold text-sm text-gray-900 dark:text-white mb-0.5">Aviatrix Multi-Cloud Network Associate</h4>
+                        <div class="font-mono text-[10px] text-gray-500">Associate • 2021 — 2024</div>
+                    </div>
+                </div>
+
+                <!-- Cert 9 -->
+                <div class="flex items-center gap-4 bg-white dark:bg-[#0f0f0f] border border-gray-200 dark:border-gray-800 rounded-xl p-5 hover:border-gray-300 dark:hover:border-gray-700 transition-colors">
+                    <div class="w-12 h-12 flex-shrink-0 bg-gray-100 dark:bg-[#151515] rounded-lg border border-gray-200 dark:border-gray-800 flex items-center justify-center text-gray-500 dark:text-gray-400">
+                        <i data-lucide="award" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <div class="font-mono text-[10px] text-gray-500 tracking-widest uppercase mb-1">ORACLE <span class="text-brandGreen">OCFA</span></div>
+                        <h4 class="font-bold text-sm text-gray-900 dark:text-white mb-0.5">Oracle Foundations Associate</h4>
+                        <div class="font-mono text-[10px] text-gray-500">Foundational • –</div>
+                    </div>
+                </div>
+                
+                <!-- Cert 10 -->
+                <div class="flex items-center gap-4 bg-white dark:bg-[#0f0f0f] border border-gray-200 dark:border-gray-800 rounded-xl p-5 hover:border-gray-300 dark:hover:border-gray-700 transition-colors">
+                    <div class="w-12 h-12 flex-shrink-0 bg-gray-100 dark:bg-[#151515] rounded-lg border border-gray-200 dark:border-gray-800 flex items-center justify-center text-gray-500 dark:text-gray-400">
+                        <i data-lucide="award" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <div class="font-mono text-[10px] text-gray-500 tracking-widest uppercase mb-1">FORTINET <span class="text-brandGreen">NSE</span></div>
+                        <h4 class="font-bold text-sm text-gray-900 dark:text-white mb-0.5">Fortinet NSE</h4>
+                        <div class="font-mono text-[10px] text-gray-500">Network Security • –</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Education Sub-section -->
+            <div class="font-mono text-xs text-brandGreen mb-6 tracking-widest uppercase flex items-center gap-2">
+                <span>05.1</span> <span class="text-gray-500">/</span> <span>EDUCATION</span>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Edu 1 -->
+                <div class="flex items-start gap-4 bg-white dark:bg-[#0f0f0f] border border-gray-200 dark:border-gray-800 rounded-xl p-6 hover:border-gray-300 dark:hover:border-gray-700 transition-colors">
+                    <i data-lucide="graduation-cap" class="w-5 h-5 text-brandGreen mt-1 flex-shrink-0"></i>
+                    <div>
+                        <h4 class="font-bold text-base text-gray-900 dark:text-white mb-1">M.Tech, Computer Science</h4>
+                        <div class="text-sm text-gray-600 dark:text-gray-400 mb-2">Indian Institute of Technology, Patna</div>
+                        <div class="font-mono text-[10px] text-gray-500">2024 — 2026 • Full-time</div>
+                    </div>
+                </div>
+
+                <!-- Edu 2 -->
+                <div class="flex items-start gap-4 bg-white dark:bg-[#0f0f0f] border border-gray-200 dark:border-gray-800 rounded-xl p-6 hover:border-gray-300 dark:hover:border-gray-700 transition-colors">
+                    <i data-lucide="graduation-cap" class="w-5 h-5 text-brandGreen mt-1 flex-shrink-0"></i>
+                    <div>
+                        <h4 class="font-bold text-base text-gray-900 dark:text-white mb-1">B.Tech, Computer Science & Engineering</h4>
+                        <div class="text-sm text-gray-600 dark:text-gray-400 mb-2">Uttar Pradesh Technical University (UPTU)</div>
+                        <div class="font-mono text-[10px] text-gray-500">2016 — 2020 • Full-time</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Divider -->
+        <div class="w-full h-px bg-gray-200 dark:bg-gray-800/80"></div>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-24 max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+                <div>
+                    <div class="font-mono text-xs text-brandGreen mb-4 tracking-widest uppercase flex items-center gap-2">
+                        <span>06</span> <span class="text-gray-500">/</span> <span>CONTACT</span>
+                    </div>
+                    <h2 class="text-4xl font-bold tracking-tight text-gray-900 dark:text-white">Contact</h2>
+                </div>
+                <div class="text-gray-500 dark:text-gray-400 pb-1 max-w-sm text-sm">
+                    Open to remote, hybrid, and on-site Cloud / SRE / DevOps roles.
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                
+                <!-- Left: Terminal Mail Card -->
+                <div class="bg-white dark:bg-[#0a0a0a] border border-gray-200 dark:border-gray-800 rounded-xl p-8 lg:p-12 flex flex-col justify-center relative overflow-hidden">
+                    <div class="font-mono text-[10px] text-brandGreen mb-8 tracking-widest uppercase">> SEND MAIL</div>
+                    <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-8 break-all">
+                        srishtilohanisharma<br class="hidden sm:block">@gmail.com
+                    </h3>
+                    <a href="mailto:srishtilohanisharma@gmail.com" class="font-mono text-brandGreen hover:text-brandGreenHover text-sm flex items-center gap-2 w-fit group">
+                        Compose email <i data-lucide="arrow-up-right" class="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"></i>
+                    </a>
+                </div>
+
+                <!-- Right: Links Grid -->
+                <div class="flex flex-col gap-4">
+                    
+                    <a href="https://linkedin.com/in/srishti-lohani-sharma/" target="_blank" class="flex items-center justify-between p-6 bg-white dark:bg-[#0f0f0f] border border-gray-200 dark:border-gray-800 rounded-xl hover:border-gray-300 dark:hover:border-gray-600 transition-colors group">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 bg-gray-100 dark:bg-[#151515] rounded border border-gray-200 dark:border-gray-800 flex items-center justify-center text-brandGreen">
+                                <i data-lucide="linkedin" class="w-4 h-4"></i>
+                            </div>
+                            <div>
+                                <div class="font-mono text-[10px] text-gray-500 tracking-widest uppercase mb-1">LINKEDIN</div>
+                                <div class="text-sm font-medium text-gray-900 dark:text-gray-200">srishti-lohani-b57579166</div>
+                            </div>
+                        </div>
+                        <i data-lucide="arrow-up-right" class="w-4 h-4 text-gray-400 group-hover:text-brandGreen transition-colors"></i>
+                    </a>
+
+                    <a href="https://github.com/SrishtiLohaniSharma" target="_blank" class="flex items-center justify-between p-6 bg-white dark:bg-[#0f0f0f] border border-gray-200 dark:border-gray-800 rounded-xl hover:border-gray-300 dark:hover:border-gray-600 transition-colors group">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 bg-gray-100 dark:bg-[#151515] rounded border border-gray-200 dark:border-gray-800 flex items-center justify-center text-brandGreen">
+                                <i data-lucide="github" class="w-4 h-4"></i>
+                            </div>
+                            <div>
+                                <div class="font-mono text-[10px] text-gray-500 tracking-widest uppercase mb-1">GITHUB</div>
+                                <div class="text-sm font-medium text-gray-900 dark:text-gray-200">SrishtiLohaniSharma</div>
+                            </div>
+                        </div>
+                        <i data-lucide="arrow-up-right" class="w-4 h-4 text-gray-400 group-hover:text-brandGreen transition-colors"></i>
+                    </a>
+
+                    <div class="flex items-center justify-between p-6 bg-white dark:bg-[#0f0f0f] border border-gray-200 dark:border-gray-800 rounded-xl">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 bg-gray-100 dark:bg-[#151515] rounded border border-gray-200 dark:border-gray-800 flex items-center justify-center text-brandGreen">
+                                <i data-lucide="phone" class="w-4 h-4"></i>
+                            </div>
+                            <div>
+                                <div class="font-mono text-[10px] text-gray-500 tracking-widest uppercase mb-1">PHONE</div>
+                                <div class="text-sm font-medium text-gray-900 dark:text-gray-200">+91 99193 40406</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
             </div>
         </section>
 
     </main>
 
-    <!-- Footer / Contact -->
-    <footer class="border-t border-gray-200 dark:border-gray-800 mt-20 pt-20 pb-12 bg-white dark:bg-[#0B0D14]">
-        <div class="max-w-3xl mx-auto px-4 text-center space-y-6">
-            <h2 class="text-3xl font-bold text-gray-900 dark:text-white">Initiate Handshake</h2>
-            <p class="text-gray-600 dark:text-gray-400">
-                Currently open for new roles in Cloud Engineering, SRE, or Infrastructure Support. Whether you have a question or just want to connect, my inbox is open.
-            </p>
-            <div class="pt-6 pb-12 border-b border-gray-200 dark:border-gray-800">
-                <a href="mailto:srishtilohanisharma@gmail.com" class="inline-block bg-brandGreen hover:bg-brandGreenHover text-gray-900 font-bold px-8 py-4 rounded-lg transition-colors">
-                    srishtilohanisharma@gmail.com
+    <!-- Footer -->
+    <footer class="border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-[#0a0a0a]">
+        <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="font-mono text-xs text-gray-500">
+                <span class="text-brandGreen">~/</span>srishti.sh • © 2026 • Srishti Lohani Sharma
+                <br>
+                <span class="text-[10px] opacity-70 mt-1 inline-block">Designed & coded — single-file deploy ready.</span>
+            </div>
+            
+            <div class="flex items-center gap-4 text-gray-500">
+                <a href="https://github.com/SrishtiLohaniSharma" target="_blank" class="hover:text-gray-900 dark:hover:text-white transition-colors">
+                    <i data-lucide="github" class="w-4 h-4"></i>
+                </a>
+                <a href="https://linkedin.com/in/srishti-lohani-sharma/" target="_blank" class="hover:text-gray-900 dark:hover:text-white transition-colors">
+                    <i data-lucide="linkedin" class="w-4 h-4"></i>
+                </a>
+                <a href="mailto:srishtilohanisharma@gmail.com" class="hover:text-gray-900 dark:hover:text-white transition-colors">
+                    <i data-lucide="mail" class="w-4 h-4"></i>
                 </a>
             </div>
-            <p class="text-xs font-mono text-gray-500 pt-6">
-                © Srishti Lohani Sharma. Designed & Built for the Cloud.
-            </p>
         </div>
     </footer>
 
-    <!-- Initialize Theme Toggle & Icons -->
+    <!-- Scripts -->
     <script>
+        // 1. Initialize Icons
         lucide.createIcons();
 
+        // 2. Theme Toggle Logic
         const themeToggleBtn = document.getElementById('theme-toggle');
         const darkIcon = document.getElementById('theme-toggle-dark-icon');
         const lightIcon = document.getElementById('theme-toggle-light-icon');
 
-        // Initial setup for the icons based on the html 'dark' class
         if (document.documentElement.classList.contains('dark')) {
             lightIcon.classList.remove('hidden');
         } else {
@@ -399,11 +793,9 @@
         }
 
         themeToggleBtn.addEventListener('click', function() {
-            // Toggle icons
             darkIcon.classList.toggle('hidden');
             lightIcon.classList.toggle('hidden');
 
-            // If is set in localStorage
             if (localStorage.theme === 'dark') {
                 document.documentElement.classList.remove('dark');
                 localStorage.theme = 'light';
@@ -411,7 +803,6 @@
                 document.documentElement.classList.add('dark');
                 localStorage.theme = 'dark';
             } else {
-                // If no localStorage, fallback to current dom state
                 if (document.documentElement.classList.contains('dark')) {
                     document.documentElement.classList.remove('dark');
                     localStorage.theme = 'light';
@@ -421,6 +812,34 @@
                 }
             }
         });
+
+        // 3. Scrollspy Navigation Logic (Interactive Buttons)
+        const sections = document.querySelectorAll("section[id]");
+        const navBtns = document.querySelectorAll(".nav-btn");
+
+        function navHighlighter() {
+            let scrollY = window.pageYOffset;
+            
+            sections.forEach(current => {
+                const sectionHeight = current.offsetHeight;
+                // Add an offset so it highlights before you perfectly hit the top
+                const sectionTop = current.offsetTop - 150;
+                const sectionId = current.getAttribute("id");
+                
+                // If the current scroll position is within this section's bounds
+                if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                    document.querySelector('.nav-btn[href*="' + sectionId + '"]').classList.add("active");
+                } else {
+                    document.querySelector('.nav-btn[href*="' + sectionId + '"]').classList.remove("active");
+                }
+            });
+        }
+        
+        // Listen for scroll events
+        window.addEventListener("scroll", navHighlighter);
+        
+        // Run once on load to highlight the initial section
+        navHighlighter();
     </script>
 </body>
 </html>
