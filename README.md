@@ -1,13 +1,13 @@
-~/srishti.sh - Cloud & SRE Engineer Portfolio
+## ~/srishti.sh - Cloud & SRE Engineer Portfolio
 
 A production-grade, single-page portfolio designed for technical recruiters and engineering managers. Built with a sleek, terminal-inspired aesthetic to highlight infrastructure, automation, and multi-cloud expertise.
 
-🚀 Live Deployment
+## 🚀 Live Deployment
 
 The portfolio is deployed statically and can be viewed here:
 View Live Portfolio
 
-🛠 Tech Stack
+## 🛠 Tech Stack
 
 This project is designed to be extremely lightweight and fast, relying entirely on a single-file architecture.
 
@@ -19,7 +19,7 @@ Vanilla JavaScript - Handles the interactive scrollspy navigation and theme togg
 
 Lucide Icons - Clean, modern vector icons.
 
-✨ Features
+## ✨ Features
 
 Terminal Aesthetic: Design elements inspired by command-line interfaces, including monospaced fonts, explicit paths (~/SKILLS/CLOUD/), and strict grid alignments.
 
@@ -31,13 +31,13 @@ Mobile-First Responsive: Stacks seamlessly on mobile devices while expanding int
 
 Animated Status Indicators: Includes CSS-driven ping animations (e.g., the "Hire Me" button) to simulate live server states.
 
-📁 Repository Structure
+## 📁 Repository Structure
 
 index.html: The core application containing all markup, styles, and logic.
 
 README.md: Project documentation.
 
-🤝 Connect
+## 🤝 Connect
 
 LinkedIn: srishti-lohani-sharma
 
