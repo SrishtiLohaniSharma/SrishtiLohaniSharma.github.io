@@ -125,8 +125,15 @@
                         <i data-lucide="moon" id="theme-toggle-dark-icon" class="hidden w-5 h-5"></i>
                     </button>
                     
-                    <a href="mailto:srishtilohanisharma@gmail.com" class="hidden sm:inline-flex items-center justify-center px-4 py-2 text-xs font-mono font-bold rounded text-gray-900 bg-brandGreen hover:bg-brandGreenHover transition-colors gap-2">
-                        <i data-lucide="mail" class="w-4 h-4"></i> HIRE ME
+                    <!-- Graphical HIRE ME Button -->
+                    <a href="mailto:srishtilohanisharma@gmail.com" class="hidden sm:inline-flex items-center justify-center px-4 py-2 text-xs font-mono font-bold rounded text-gray-900 bg-brandGreen hover:bg-brandGreenHover transition-all hover:shadow-[0_0_15px_rgba(74,222,128,0.5)] hover:-translate-y-0.5 gap-2 group">
+                        <!-- Pulsing status dot -->
+                        <span class="relative flex h-2 w-2">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+                        </span>
+                        <i data-lucide="mail" class="w-4 h-4 group-hover:animate-bounce"></i> 
+                        HIRE ME
                     </a>
                 </div>
             </div>
