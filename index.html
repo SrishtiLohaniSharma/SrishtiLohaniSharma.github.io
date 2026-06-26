@@ -12,6 +12,10 @@
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Load robust CDN for Lucide icons in head to ensure 100% availability -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -123,13 +127,8 @@
                     </button>
                     
                     <!-- Graphical HIRE ME Button -->
-                    <a href="mailto:srishtilohanisharma@gmail.com" class="hidden sm:inline-flex items-center justify-center px-4 py-2 text-xs font-mono font-bold rounded text-gray-900 bg-brandGreen hover:bg-brandGreenHover transition-all hover:shadow-[0_0_15px_rgba(74,222,128,0.5)] hover:-translate-y-0.5 gap-2 group">
-                        <!-- Pulsing status dot -->
-                        <span class="relative flex h-2 w-2">
-                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-                            <span class="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
-                        </span>
-                        <i data-lucide="mail" class="w-4 h-4 group-hover:animate-bounce"></i> 
+                    <a href="mailto:srishtilohanisharma@gmail.com" class="hidden sm:inline-flex items-center justify-center px-4 py-2 text-xs font-mono font-bold rounded text-white dark:text-gray-900 bg-brandGreen hover:bg-brandGreenHover transition-all hover:-translate-y-0.5 gap-2 group">
+                        <i data-lucide="mail" class="w-4 h-4"></i> 
                         HIRE ME
                     </a>
                 </div>
@@ -240,7 +239,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[1px] bg-gray-200 dark:bg-gray-800 border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden">
                 
                 <!-- Skill Block 1 -->
-                <div class="bg-white dark:bg-[#0d0d0d] p-8">
+                <div class="bg-white dark:bg-[#0d0d0d] p-8 relative hover:z-10 hover:ring-1 hover:ring-brandGreen hover:shadow-[0_0_20px_rgba(74,222,128,0.15)] transition-all">
                     <div class="font-mono text-[10px] text-brandGreen mb-3 tracking-widest uppercase">>_ ~/SKILLS/CLOUD/</div>
                     <h3 class="text-lg font-bold mb-6 text-gray-900 dark:text-white">Cloud Platforms</h3>
                     <div class="flex flex-wrap gap-2">
@@ -252,7 +251,7 @@
                 </div>
 
                 <!-- Skill Block 2 -->
-                <div class="bg-white dark:bg-[#0d0d0d] p-8">
+                <div class="bg-white dark:bg-[#0d0d0d] p-8 relative hover:z-10 hover:ring-1 hover:ring-brandGreen hover:shadow-[0_0_20px_rgba(74,222,128,0.15)] transition-all">
                     <div class="font-mono text-[10px] text-brandGreen mb-3 tracking-widest uppercase">>_ ~/SKILLS/SRE/</div>
                     <h3 class="text-lg font-bold mb-6 text-gray-900 dark:text-white">SRE & Observability</h3>
                     <div class="flex flex-wrap gap-2">
@@ -269,7 +268,7 @@
                 </div>
 
                 <!-- Skill Block 3 -->
-                <div class="bg-white dark:bg-[#0d0d0d] p-8">
+                <div class="bg-white dark:bg-[#0d0d0d] p-8 relative hover:z-10 hover:ring-1 hover:ring-brandGreen hover:shadow-[0_0_20px_rgba(74,222,128,0.15)] transition-all">
                     <div class="font-mono text-[10px] text-brandGreen mb-3 tracking-widest uppercase">>_ ~/SKILLS/CICD/</div>
                     <h3 class="text-lg font-bold mb-6 text-gray-900 dark:text-white">CI/CD & Automation</h3>
                     <div class="flex flex-wrap gap-2">
@@ -282,7 +281,7 @@
                 </div>
 
                 <!-- Skill Block 4 -->
-                <div class="bg-white dark:bg-[#0d0d0d] p-8">
+                <div class="bg-white dark:bg-[#0d0d0d] p-8 relative hover:z-10 hover:ring-1 hover:ring-brandGreen hover:shadow-[0_0_20px_rgba(74,222,128,0.15)] transition-all">
                     <div class="font-mono text-[10px] text-brandGreen mb-3 tracking-widest uppercase">>_ ~/SKILLS/CONTAINERS/</div>
                     <h3 class="text-lg font-bold mb-6 text-gray-900 dark:text-white">Containers & Orchestration</h3>
                     <div class="flex flex-wrap gap-2">
@@ -293,7 +292,7 @@
                 </div>
 
                 <!-- Skill Block 5 -->
-                <div class="bg-white dark:bg-[#0d0d0d] p-8">
+                <div class="bg-white dark:bg-[#0d0d0d] p-8 relative hover:z-10 hover:ring-1 hover:ring-brandGreen hover:shadow-[0_0_20px_rgba(74,222,128,0.15)] transition-all">
                     <div class="font-mono text-[10px] text-brandGreen mb-3 tracking-widest uppercase">>_ ~/SKILLS/CODE/</div>
                     <h3 class="text-lg font-bold mb-6 text-gray-900 dark:text-white">Scripting & Code</h3>
                     <div class="flex flex-wrap gap-2">
@@ -305,7 +304,7 @@
                 </div>
 
                 <!-- Skill Block 6 -->
-                <div class="bg-white dark:bg-[#0d0d0d] p-8">
+                <div class="bg-white dark:bg-[#0d0d0d] p-8 relative hover:z-10 hover:ring-1 hover:ring-brandGreen hover:shadow-[0_0_20px_rgba(74,222,128,0.15)] transition-all">
                     <div class="font-mono text-[10px] text-brandGreen mb-3 tracking-widest uppercase">>_ ~/SKILLS/NETWORK/</div>
                     <h3 class="text-lg font-bold mb-6 text-gray-900 dark:text-white">Networking</h3>
                     <div class="flex flex-wrap gap-2">
@@ -320,7 +319,7 @@
                 </div>
 
                 <!-- Skill Block 7 -->
-                <div class="bg-white dark:bg-[#0d0d0d] p-8 md:col-span-2 lg:col-span-1">
+                <div class="bg-white dark:bg-[#0d0d0d] p-8 md:col-span-2 lg:col-span-1 relative hover:z-10 hover:ring-1 hover:ring-brandGreen hover:shadow-[0_0_20px_rgba(74,222,128,0.15)] transition-all">
                     <div class="font-mono text-[10px] text-brandGreen mb-3 tracking-widest uppercase">>_ ~/SKILLS/ITSM/</div>
                     <h3 class="text-lg font-bold mb-6 text-gray-900 dark:text-white">ITSM & Process</h3>
                     <div class="flex flex-wrap gap-2">
@@ -334,7 +333,7 @@
                 </div>
 
                 <!-- Skill Block 8 -->
-                <div class="bg-white dark:bg-[#0d0d0d] p-8 md:col-span-2 lg:col-span-1 lg:col-start-2">
+                <div class="bg-white dark:bg-[#0d0d0d] p-8 md:col-span-2 lg:col-span-1 lg:col-start-2 relative hover:z-10 hover:ring-1 hover:ring-brandGreen hover:shadow-[0_0_20px_rgba(74,222,128,0.15)] transition-all">
                     <div class="font-mono text-[10px] text-brandGreen mb-3 tracking-widest uppercase">>_ ~/SKILLS/OS/</div>
                     <h3 class="text-lg font-bold mb-6 text-gray-900 dark:text-white">Operating Systems</h3>
                     <div class="flex flex-wrap gap-2">
@@ -799,8 +798,6 @@
     </footer>
 
     <!-- Scripts -->
-    <!-- Load robust unpkg CDN for Lucide icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
     <script>
         // Ensure DOM is fully loaded before painting icons to prevent missing elements
         document.addEventListener("DOMContentLoaded", function() {
