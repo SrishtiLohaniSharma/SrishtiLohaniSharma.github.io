@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio Project</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100vh; /* Fills the vertical screen */
+            overflow: hidden; /* Prevents double scrollbars */
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Replace this URL with the actual project you want to showcase -->
+    <iframe id="contentFrame" src="https://sre-hub-1.preview.emergentagent.com/?utm_source=share" allowfullscreen></iframe>
+
+    <script>
+        // Security best practice: Define which domains are allowed to send messages
+        const TRUSTED_ORIGIN = 'https://sre-hub-1.preview.emergentagent.com/?utm_source=share';
+
+        window.addEventListener('message', function(event) {
+            // Drop any messages that don't come from your trusted app
+            if (event.origin !== TRUSTED_ORIGIN) return;
+
+            if (event.data && event.data.type === 'reload') {
+                window.location.reload();
+            }
+
+            if (event.data && event.data.type === 'url') {
+                window.open(event.data.url, '_blank');
+            }
+        });
+    </script>
+</body>
+</html>
